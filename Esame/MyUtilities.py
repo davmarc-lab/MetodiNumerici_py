@@ -1,7 +1,40 @@
 import numpy as np
 import numpy.linalg as npl
+import scipy as sp
+import scipy.linalg as spl
+import matplotlib.pyplot as plt
 
+# Controlli inziali per analizzare la matrice
+A = np.array([[], []])
 
+# matrice quadrata o non
+m, n = A.shape
+
+# densa o sparsa
+nz = np.count_nonzero(A) / (m * n)
+pnz = nz * 100
+
+# simmetrica
+val = A == A.T
+if np.all(val) == 0:
+    print("Non Simmetrica")
+else:
+    print("Simmetrica")
+    # definita positiva o non
+    autoval = np.all(npl.eigvals(A))
+    if autoval > 0:
+        print("Definita Positiva")
+    else:
+        print("Non Definita Positiva")
+
+# ben condizionata
+cond = npl.cond(A, 2)
+# 1000 = mediamente mal condizionata
+
+# rango massimo
+rank = npl.matrix_rank(A)
+
+# Common Methods
 def norm1(x):
     return np.max(np.sum(np.abs(x), axis=0))
 
