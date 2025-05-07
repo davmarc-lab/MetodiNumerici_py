@@ -27,6 +27,11 @@ else:
     else:
         print("Non Definita Positiva")
 
+# diagonale strettamente dominante
+D = np.diag(A)
+S = np.sum(np.abs(A), axis=1) - D
+print("Diagonale Dominante:", np.all(D>S))
+
 # ben condizionata
 cond = npl.cond(A, 2)
 # 1000 = mediamente mal condizionata
